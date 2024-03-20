@@ -22,19 +22,20 @@
 
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-            <a class="nav-link" href="#">Log-in</a>
+            <a class="nav-link" href="{% url 'login-page' %}">Log-in</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Sign-up</a>
+            <a class="nav-link" href="{% url 'signup-page' %}">Sign-up</a>  <!--Hyperlink tag-->
         </li>
 
         <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
+            {{request.user.username|capfirst}}
         </a>
         <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="{% url 'dashboard-page' %}">Dashboard</a></li>
+            <li><a class="dropdown-item" href="{% url 'change-password-page' %}">Change Password</a></li>
+            <li><a class="dropdown-item" href="{% url 'logout-page' %}">logout</a></li>
 
         </ul>
         </li>
