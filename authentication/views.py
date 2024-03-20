@@ -1,8 +1,8 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.views.generic import TemplateView
-from .forms import SignUpUserCreationForm, LoginAuthenticationForm
+from .forms import SignUpUserCreationForm, LoginAuthenticationForm, ChangePasswordForm
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 
 # Create Signup views here.
 class SignUpTemplateView(TemplateView):
@@ -60,4 +60,19 @@ def logoutView(request):
         return HttpResponseRedirect('/accounts/login/')
     else:
         return HttpResponseRedirect('/accounts/login/')
+
+# change password
+def changePasswordView(request):
+    if request.method == 'POST':
+        fm = ChangePasswordForm(user=request.user, data = request.POST)
+        
+        if fm.is_valid():
+            fm.save()
+            
+            update_session_auth_hash(request, fm.user)      # change korar por jano dashboard thake 
+            return HttpResponseRedirect('/accounts/dashboard/')
+    else:
+        fm = ChangePasswordForm(user=request.user)
+    return render(request, 'authentication/changepassword.html', {'form':fm})
+
 
