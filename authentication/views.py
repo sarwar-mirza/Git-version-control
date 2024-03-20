@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponseRedirect
 from django.views.generic import TemplateView
-from .forms import SignUpUserCreationForm
+from .forms import SignUpUserCreationForm, LoginAuthenticationForm
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
 
 # Create Signup views here.
 class SignUpTemplateView(TemplateView):
@@ -29,3 +30,20 @@ class SignUpTemplateView(TemplateView):
 
 
 
+# Create Login Function based view
+def loginView(request):
+    if request.method == 'POST':
+        fm = LoginAuthenticationForm(request=request, data = request.POST)
+        
+        if fm.is_valid():
+            un = fm.cleaned_data['username']
+            pw = fm.cleaned_data['password']
+            
+            user = authenticate(username=un, password=pw)
+            
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect('/accounts/dashboard/')
+    else:
+        fm = LoginAuthenticationForm()
+    return render(request, 'authentication/login.html', {'form':fm})
