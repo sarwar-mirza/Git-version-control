@@ -52,3 +52,12 @@ def loginView(request):
 # Dashboard
 def dashboard(request):
     return render(request, 'authentication/dashboard.html')
+
+# logout
+def logoutView(request):
+    if request.user.is_authenticated:
+        logout(request)
+        return HttpResponseRedirect('/accounts/login/')
+    else:
+        return HttpResponseRedirect('/accounts/login/')
+
