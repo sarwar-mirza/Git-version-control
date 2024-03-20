@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}   <!--load static file images, file, video, etc-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Dwonload bootstrap css -->
+    <link rel="stylesheet" href="{% static 'core/css/bootstrap.min.css' %}">
+    <!-- Dwonload fontawesome css -->
+    <link rel="stylesheet" href="{% static 'core/css/fontawesome.css' %}">
+
+    <!-- block tag  css-->
+    {% block css %}
+    <!-- custom css -->
+      <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+    {% endblock css %}
+
+    <!-- block tag title -->
+    <title>{% block title %}{% endblock title %}</title>
+
+</head>
+<body>
+    <!-- include navbar -->
+    {% include "core/navbar.html" %}
+
+    <!-- block tag content -->
+    {% block content %}
+      
+    {% endblock content %}
+
+    <!-- Dwonload jquery, popper, bootstrap, fontawesome javaScript -->
+    <script src="{% static 'core/js/jquery.js' %}"></script>
+    <script src="{% static 'core/js/popper.js' %}"></script>
+    <script src="{% static 'core/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'core/js/all.min.js' %}"></script>
+</body>
+</html>
