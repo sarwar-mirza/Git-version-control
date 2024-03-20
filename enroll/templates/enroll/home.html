@@ -1,0 +1,33 @@
+<!-- Inherit parent template -->
+{% extends "core/base.html" %}
+
+<!-- load static file -->
+{% load static %}
+
+<!-- block tag title -->
+{% block title %}Home{% endblock title %}
+
+<!-- block tag content -->
+{% block content %}
+  <div class="container">
+    <div class="row mt-3">
+
+            {% for img in image %}   <!--for loop -->
+              <div class="col-sm-4 mt-2">
+                <div class="card">
+                    <img src="{{img.picture.url}}" class="card-img-top" alt="images" height="200px">
+                    <div class="card-body">
+                      <h5 class="card-title fw-bold">{{img.title}}</h5>
+                      <p class="card-text text-truncate">{{img.desc}}</p>
+                      
+                      <div class="card-footer">
+                        <small class="text-muted">{{img.date}}</small>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            {% endfor %}
+
+    </div>
+  </div>
+{% endblock content %}
