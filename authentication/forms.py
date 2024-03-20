@@ -46,7 +46,7 @@ class SignUpUserCreationForm(UserCreationForm):
         }
 
 
-
+# Login 
 class LoginAuthenticationForm(AuthenticationForm):
     username = UsernameField(error_messages= {'required':'Enter Your Username'},widget=forms.TextInput(attrs={"autofocus": True,"class":"form-control", "placeholder":"Username"}))
     password = forms.CharField(
@@ -57,3 +57,4 @@ class LoginAuthenticationForm(AuthenticationForm):
     )
 
 
+# 

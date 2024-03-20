@@ -47,3 +47,8 @@ def loginView(request):
     else:
         fm = LoginAuthenticationForm()
     return render(request, 'authentication/login.html', {'form':fm})
+
+
+# Dashboard
+def dashboard(request):
+    return render(request, 'authentication/dashboard.html')
